@@ -1,0 +1,145 @@
+# kivy 2.0.0 // KivyMD 0.104.1dev0
+<Gerenciador>:
+    Tela1:
+        # Tela de escolha do jogo
+        name: "Tela1"
+    Tela2:
+        # Tela do eu nunca
+        name: "Tela2"
+    Tela3:
+        # Tela do verdade ou desafio +18
+        name: "Tela3"
+<Tela1>
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint:
+        padding: 20
+        MDCard:
+            background_color: 1,0,0,1
+            orientation: 'vertical'
+            pos_hint: {'center_x' : 0.5 , 'center_y': 0.5}
+            BoxLayout:
+                orientation: 'vertical'
+                MDIcon:
+                    icon: 'emoticon-poop'
+                    halign: 'center'
+                    font_size: "150dp"
+                    background_color: 1,0,0,1
+                MDLabel:
+                    text: 'Vai dá merda ...'
+                    font_size: 40
+                    halign: 'center'
+            BoxLayout:
+                spacing: 20
+                orientation: 'vertical'
+                padding: 0,0,0,60
+                MDRoundFlatButton:
+                    pos_hint: {'center_x' : 0.5 , 'center_y': 0.5}
+                    size_hint_x: .7
+                    text: "Eu nunca"
+                    on_release: app.root.current = "Tela2"
+                MDRoundFlatButton:
+                    pos_hint: {'center_x' : 0.5 , 'center_y': 0.5}
+                    size_hint_x: .7
+                    text: "Verdade ou desafio +18"
+                    on_release: app.root.current = "Tela3"
+
+<Tela2>: # Jogo do eu nunca
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: 'Menu'
+            halign: 'center'
+            font_size:10
+            left_action_items: [['arrow-left', lambda x: root.manager.change_screen("Tela1")]]
+        BoxLayout:
+            orientation: "vertical"
+            md_bg_color: .20,.20,.20
+            padding: 10
+            spacing: 5
+            MDCard:
+                background_color: 1,0,0,1
+                orientation: 'vertical'
+                padding: 20
+                pos_hint: {'center_x' : 0.5 , 'center_y': 0.5}
+                MDLabel:
+                    id: txt
+                    text: 'Eu nunca ....'
+                    bold: True
+                    halign: 'center'
+                BoxLayout:
+                    size_hint_y: .2
+                    Button:
+                        text: 'Leve'
+                        bold: True
+                        background_color: (0,255,0,1)
+                        on_press: root.EuNuncaLeve()
+
+                    Button:
+                        text: 'Pesado'
+                        background_color: (255,0,0,1)
+                        on_press: root.EuNuncaPesado()
+
+<Tela3>: # Jogo do Verdade ou desafio +18
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: 'Menu'
+            halign: 'center'
+            font_size:10
+            left_action_items: [['arrow-left', lambda x: root.manager.change_screen("Tela1")]]
+        MDCard:
+            background_color: 1,0,0,1
+            padding: 20
+            spacing: 10
+            pos_hint: {'center_x' : 0.5 , 'center_y': 0.5}
+            size_hint_y:.20
+            MDTextField:
+                id: user
+                hint_text: "Adicione os jogadores"
+                mode: "rectangle"
+                size_hint_x:.8
+                background_color: 1,1,1,1
+                text: ""
+            MDIconButton:
+                icon: "account-group"
+                on_press: root.cadastro()
+        Label:
+            id: Berlinda
+            text: "É a vez de ..."
+            color: 0,0,0,1
+            size_hint_y: .1
+        BoxLayout:
+            orientation: "vertical"
+            md_bg_color: .20,.20,.20
+            padding: 10
+            spacing: 5
+            MDCard:
+                background_color: 1,0,0,1
+                orientation: 'vertical'
+                padding: 20
+                pos_hint: {'center_x' : 0.5 , 'center_y': 0.5}
+                MDLabel:
+                    id: txt
+                    text: 'Verdade ou desafio ....'
+                    bold: True
+                    halign: 'center'
+                BoxLayout:
+                    size_hint_y: .2
+                    Button:
+                        text: 'Verdade'
+                        bold: True
+                        background_color: (0,255,0,1)
+                        on_press: root.Verdade()
+
+                    Button:
+                        text: 'Desafio'
+                        background_color: (255,0,0,1)
+                        on_press: root.Desafio()
+
+
+        #        MDToolbar:
+        #            title: 'Menu'
+        #            halign: 'center'
+        #            font_size:10
+        #            left_action_items: [['arrow-left', lambda x: root.manager.change_screen("Tela1")]]
